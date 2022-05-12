@@ -1,6 +1,9 @@
 import express, {Express} from 'express'
 import cors from 'cors'
 import { AddressInfo } from "net";
+import { bandRouter } from './routes/bandRouter';
+import { userRouter } from './routes/UserRouter';
+import { showRouter } from './routes/ShowRouter';
 
 const app: Express = express();
 
