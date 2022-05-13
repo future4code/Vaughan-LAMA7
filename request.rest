@@ -7,3 +7,27 @@ Content-Type: application/json
     "password": "123456",
     "role": "admin"
 }
+
+###
+
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "astrodev@gmail.com",
+    "password": "123456"
+}
+
+###
+
+POST http://localhost:3003/bands/register
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA4MjYxMjY3LTA0NWQtNDIxYy1hMDRmLWVlMTZhYmNkNGQyOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MjQ2NTEwNSwiZXhwIjoxNjUyNDgzMTA1fQ.HEhffKpY4_YXUFqUfKc6doaICQT7N5H3CvbEdVHjsR4
+Content-Type: application/json
+
+{
+    "name": "Fall Out Boy",
+    "musicGenre": "Rock Alternativo",
+    "responsible": "Patrick Stump"
+}
+
+###
