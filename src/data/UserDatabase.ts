@@ -18,7 +18,6 @@ export class UserDatabase extends BaseDatabase {
         try {
             const result: GetUserOutput[] = await BaseDatabase.connection(this.TABLE_NAME)
                 .where({ email })
-            console.log(result)
 
             return result[0]
 

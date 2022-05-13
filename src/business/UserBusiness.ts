@@ -20,15 +20,15 @@ export class UserBusiness {
         const emailRegistered: GetUserOutput = await this.userDatabase.getUserByEmail(email)
 
         if (emailRegistered) {
-            throw new CustomError(409, "Email já cadastrado")
+            throw new CustomError(409, "Email já cadastrado!")
         }
 
         if (email.indexOf("@") < 2) {
-            throw new CustomError(422, "Email inválido")
+            throw new CustomError(422, "Email inválido!")
         }
 
         if (!name || !email || !password || !role) {
-            throw new CustomError(422, "Um ou mais campos vazios")
+            throw new CustomError(422, "Um ou mais campos vazios!")
         }
 
         if (role !== USER_ROLES.NORMAL && role !== USER_ROLES.ADMIN) {
@@ -48,25 +48,29 @@ export class UserBusiness {
 
         return token
 
-        
+
     }
 
-    public login = async (input: LoginInputDTO): Promise<string> =>{
-        const {email, password} = input
+    public login = async (input: LoginInputDTO): Promise<string> => {
+        const { email, password } = input
 
         const emailRegistered: GetUserOutput = await this.userDatabase.getUserByEmail(email)
 
-        if(!emailRegistered){
+        if (!email || !password) {
+            throw new CustomError(422, "Um ou mais campos vazios!")
+        }
+
+        if (!emailRegistered) {
             throw new CustomError(404, "Email não encontrado!")
         }
 
         const isPasswordCorrect: boolean = this.hashManager.compareHash(password, emailRegistered.password)
 
-        if(!isPasswordCorrect){
+        if (!isPasswordCorrect) {
             throw new CustomError(401, "Senha incorreta!")
         }
 
-        const token: string = this.authenticator.generateToken({ id: emailRegistered.id , role: emailRegistered.role })
+        const token: string = this.authenticator.generateToken({ id: emailRegistered.id, role: emailRegistered.role })
 
         return token
     }

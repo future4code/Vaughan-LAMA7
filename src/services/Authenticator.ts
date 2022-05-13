@@ -26,7 +26,7 @@ export class Authenticator {
     }
 }
 
-type AuthenticationData = {
+export type AuthenticationData = {
     id: string
     role: USER_ROLES
 }
