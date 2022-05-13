@@ -9,3 +9,18 @@ export class User {
         private role: USER_ROLES
     ) { }
 }
+
+export interface SignupInputDTO {
+    name: string
+    email: string
+    password: string
+    role: USER_ROLES
+}
+
+export interface GetUserOutput {
+    id: string
+    name: string
+    email: string
+    password: string
+    role: USER_ROLES
+}
