@@ -8,7 +8,7 @@ export class BandBusiness {
     constructor(
         private bandDatabase: BandDatabase,
         private idGenerator: IdGenerator,
-        private authenticator: Authenticator,
+        private authenticator: Authenticator
     ) { }
 
     public registerBand = async (input: RegisterBandInputDTO): Promise<void> => {
@@ -42,7 +42,7 @@ export class BandBusiness {
     }
 
     public getBand = async (token: string, search: string): Promise<GetBandOutput> => {
-         
+
         const authentication = this.authenticator.getTokenData(token) as AuthenticationData
 
         if (!authentication) {
@@ -50,11 +50,11 @@ export class BandBusiness {
         }
         const band: GetBandOutput = await this.bandDatabase.getBandByNameOrId(search)
 
-        if(!band){
+        if (!band) {
             throw new CustomError(404, "Banda não encontrada!")
         }
 
         return band
 
-    } 
+    }
 }
