@@ -1,6 +1,6 @@
 import { UserDatabase } from "../data/UserDatabase";
 import { CustomError } from "../error/CustomError";
-import { SignupInputDTO, User } from "../model/User";
+import { GetUserOutput, SignupInputDTO, User } from "../model/User";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 import { Authenticator } from "../services/Authenticator";
@@ -8,13 +8,16 @@ import { USER_ROLES } from "../types/USER_ROLES";
 
 export class UserBusiness {
     constructor(
-        private userDatabase: UserDatabase
+        private userDatabase: UserDatabase,
+        private idGenerator: IdGenerator,
+        private authenticator: Authenticator,
+        private hashManager: HashManager
     ) { }
 
     public signup = async (input: SignupInputDTO): Promise<string> => {
         const { name, email, password, role } = input
 
-        const emailRegistered = await this.userDatabase.getUserByEmail(email)
+        const emailRegistered: GetUserOutput = await this.userDatabase.getUserByEmail(email)
 
         if (emailRegistered) {
             throw new CustomError(409, "Email já cadastrado")
@@ -32,15 +35,16 @@ export class UserBusiness {
             throw new CustomError(422, "Campo 'role' deve ser ADMIN ou NORMAL")
         }
 
-        const id: string = IdGenerator.generateId()
 
-        const cypherPassword: string = HashManager.createHash(password)
+        const id: string = this.idGenerator.generateId()
+
+        const cypherPassword: string = this.hashManager.createHash(password)
 
         const user: User = new User(id, name, email, cypherPassword, role)
 
         await this.userDatabase.insertUser(user)
 
-        const token: string = Authenticator.generateToken({ id, role })
+        const token: string = this.authenticator.generateToken({ id, role })
 
         return token
     }
