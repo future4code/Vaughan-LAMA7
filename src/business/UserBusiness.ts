@@ -1,6 +1,6 @@
 import { UserDatabase } from "../data/UserDatabase";
 import { CustomError } from "../error/CustomError";
-import { GetUserOutput, SignupInputDTO, User } from "../model/User";
+import { GetUserOutput, LoginInputDTO, SignupInputDTO, User } from "../model/User";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 import { Authenticator } from "../services/Authenticator";
@@ -45,6 +45,28 @@ export class UserBusiness {
         await this.userDatabase.insertUser(user)
 
         const token: string = this.authenticator.generateToken({ id, role })
+
+        return token
+
+        
+    }
+
+    public login = async (input: LoginInputDTO): Promise<string> =>{
+        const {email, password} = input
+
+        const emailRegistered: GetUserOutput = await this.userDatabase.getUserByEmail(email)
+
+        if(!emailRegistered){
+            throw new CustomError(404, "Email não encontrado!")
+        }
+
+        const isPasswordCorrect: boolean = this.hashManager.compareHash(password, emailRegistered.password)
+
+        if(!isPasswordCorrect){
+            throw new CustomError(401, "Senha incorreta!")
+        }
+
+        const token: string = this.authenticator.generateToken({ id: emailRegistered.id , role: emailRegistered.role })
 
         return token
     }

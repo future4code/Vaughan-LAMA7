@@ -24,3 +24,8 @@ export interface GetUserOutput {
     password: string
     role: USER_ROLES
 }
+
+export interface LoginInputDTO {
+    email: string
+    password: string
+}
