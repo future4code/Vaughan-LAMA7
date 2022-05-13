@@ -35,6 +35,7 @@ export class UserBusiness {
             throw new CustomError(422, "Campo 'role' deve ser ADMIN ou NORMAL")
         }
 
+
         const id: string = this.idGenerator.generateId()
 
         const cypherPassword: string = this.hashManager.createHash(password)
