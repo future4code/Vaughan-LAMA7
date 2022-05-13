@@ -40,4 +40,21 @@ export class BandBusiness {
 
         await this.bandDatabase.insertBand(band)
     }
+
+    public getBand = async (token: string, search: string): Promise<GetBandOutput> => {
+         
+        const authentication = this.authenticator.getTokenData(token) as AuthenticationData
+
+        if (!authentication) {
+            throw new CustomError(401, "Token inválido")
+        }
+        const band: GetBandOutput = await this.bandDatabase.getBandByNameOrId(search)
+
+        if(!band){
+            throw new CustomError(404, "Banda não encontrada!")
+        }
+
+        return band
+
+    } 
 }

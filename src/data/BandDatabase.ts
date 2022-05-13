@@ -30,4 +30,24 @@ export class BandDatabase extends BaseDatabase {
             throw new Error(error.sqlMessage || error.message)
         }
     }
+
+    public getBandByNameOrId = async (search: string): Promise<GetBandOutput> => {
+
+        try {
+            const result: GetBandOutput[] = await BandDatabase.connection(this.TABLE_NAME)
+                .where("id", "like", `%${search}%`)
+                .orWhere("name", "like", `%${search}%`)
+                .select(
+                    "id", 
+                    "name",
+                    "music_genre as musicGenre",
+                    "responsible" 
+                )
+
+            return result[0]
+
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
 }

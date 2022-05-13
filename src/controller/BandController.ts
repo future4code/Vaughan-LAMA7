@@ -32,4 +32,23 @@ export class BandController {
             }
         }
     }
+
+    public getBand = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const token = req.headers.authorization as string
+            const search = req.query.search as string
+            
+            const band = await this.bandBusiness.getBand(token, search)
+           
+
+            res.status(200).send({ band })
+        }
+        catch (error: any) {
+            if (error instanceof CustomError) {
+                res.status(error.statusCode).send(error.message)
+            } else if (error instanceof Error) {
+                res.status(400).send(error.message)
+            }
+        }
+    }
 }
