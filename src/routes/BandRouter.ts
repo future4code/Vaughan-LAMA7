@@ -17,3 +17,4 @@ const bandController = new BandController(
 )
 
 bandRouter.post("/register", bandController.registerBand)
+bandRouter.get("/get", bandController.getBand)
