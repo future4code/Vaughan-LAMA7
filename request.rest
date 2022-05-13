@@ -44,6 +44,6 @@ Content-Type: application/json
 {
     "bandId": "acf015d2-16a5-4747-859c-4b5ded3b5dd1",
     "weekDay": "sabado",
-    "startTime": 8,
-    "endTime": 10
+    "startTime": 17,
+    "endTime": 18
 }
