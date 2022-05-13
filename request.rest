@@ -1,0 +1,9 @@
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "name": "Astrodev2",
+    "email": "astrodev2@gmail.com",
+    "password": "123456",
+    "role": "admin"
+}
