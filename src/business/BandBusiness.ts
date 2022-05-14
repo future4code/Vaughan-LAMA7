@@ -42,7 +42,6 @@ export class BandBusiness {
     }
 
     public getBand = async (token: string, search: string): Promise<GetBandOutput> => {
-
         const authentication = this.authenticator.getTokenData(token) as AuthenticationData
 
         if (!authentication) {

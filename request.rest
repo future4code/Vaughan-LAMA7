@@ -38,12 +38,17 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA4MjYxMjY3LTA0NWQt
 ###
 
 POST http://localhost:3003/shows/add
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA4MjYxMjY3LTA0NWQtNDIxYy1hMDRmLWVlMTZhYmNkNGQyOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MjQ2NTEwNSwiZXhwIjoxNjUyNDgzMTA1fQ.HEhffKpY4_YXUFqUfKc6doaICQT7N5H3CvbEdVHjsR4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRjYTRiNmUwLWI0ZjEtNDI4Mi05OWU0LWVmN2MxMzkxOWNlNCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MjU0OTQyMywiZXhwIjoxNjUyNTY3NDIzfQ.21TgUd4yR3yI1kdB-0jAlVg2dNzYO2INiR0LvEscoxk
 Content-Type: application/json
 
 {
-    "bandId": "acf015d2-16a5-4747-859c-4b5ded3b5dd1",
+    "bandId": "338caaff-fc7d-4897-908f-bbc678f5a583",
     "weekDay": "sabado",
-    "startTime": 17,
-    "endTime": 18
+    "startTime": 9,
+    "endTime": 12
 }
+
+###
+GET http://localhost:3003/shows/getAllShows/sabado
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRjYTRiNmUwLWI0ZjEtNDI4Mi05OWU0LWVmN2MxMzkxOWNlNCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MjU0OTQyMywiZXhwIjoxNjUyNTY3NDIzfQ.21TgUd4yR3yI1kdB-0jAlVg2dNzYO2INiR0LvEscoxk
+
