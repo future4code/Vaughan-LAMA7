@@ -33,17 +33,17 @@ export class ShowBusiness {
             throw new CustomError(422, "Dia da semana deve ser sexta, sábado ou domingo")
         }
 
-        if (startTime === NaN || Number.isInteger(startTime) || startTime < 8 && startTime > 22) {
+        if (startTime === NaN || !Number.isInteger(startTime) || startTime < 8 && startTime > 22) {
             throw new CustomError(422, "Horário de ínicio tem que ser das 8h às 22h")
         }
 
-        if (endTime === NaN || Number.isInteger(endTime) || endTime < 9) {
+        if (endTime === NaN || !Number.isInteger(endTime) || endTime < 9) {
             throw new CustomError(422, "Horário de término tem que ser das 9h às 23h")
         }
 
         const showRegistered = await this.showDatabase.getShowByDayAndTime(weekDay, startTime, endTime)
-        console.log(showRegistered)
-        if (showRegistered) {
+
+        if (showRegistered.length > 0) {
             throw new CustomError(409, "Há um conflito de horário")
         }
 
