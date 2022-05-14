@@ -41,4 +41,21 @@ export class ShowDatabase extends BaseDatabase {
             throw new Error(error.sqlMessage || error.message)
         }
     }
+
+    public getAllShows = async (weekDay: SHOW_WEEKDAY): Promise<GetShowOutput[]> => {
+        try {
+           const result: GetShowOutput[] =  await BaseDatabase.connection(this.TABLE_NAME)
+           .select(
+               "name", 
+               "music_genre as musicGenre",
+           )
+           .where({week_day: weekDay})
+           .join("tabela_bandas", {"tabela_shows.band_id": "tabela_bandas.id" })
+            
+            return result
+
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
 }
