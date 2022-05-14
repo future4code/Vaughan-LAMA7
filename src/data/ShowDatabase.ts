@@ -8,17 +8,18 @@ export class ShowDatabase extends BaseDatabase {
         weekDay: SHOW_WEEKDAY,
         startTime: number,
         endTime: number
-    ): Promise<GetShowOutput> => {
+    ): Promise<GetShowOutput[]> => {
         try {
             const result: GetShowOutput[] = await BaseDatabase.connection(this.TABLE_NAME)
                 .where({ week_day: weekDay })
-                .andWhere("start_time", "<", `${startTime}`)
-                .orWhere("end_time", ">=", `${startTime}`)
-                .andWhere("end_time", ">", `${endTime}`)
-                .orWhere("start_time", "<=", `${endTime}`)
+                .andWhere(function () {
+                    this.where('start_time', '>=', `${startTime}`).andWhere('end_time', '<=', `${endTime}`)
+                })
+                .orWhere(function () {
+                    this.where('start_time', '<', `${endTime}`).andWhere('end_time', '>', `${startTime}`)
+                })
 
-
-            return result[0]
+            return result
 
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
