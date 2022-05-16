@@ -23,7 +23,6 @@ Projeto desenvolvido conforme proposta do bootcamp ministrado pela Labenu para a
 * Visualização de todos os shows do mesmo dia
 
 ## Backlog:
-* Consertar alguns dos testes
 * Endpoint de criar ingresso
 * Endpoint de comprar ingresso
 * Endpoint de adicionar foto
