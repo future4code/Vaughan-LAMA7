@@ -1,4 +1,30 @@
 # Labenu Music Awards
-Como você deve saber muito bem, o nosso querido chefinho Astrodev é uma pessoa com Networking incrível e ele conhece vários artistas estrelados. Além disso, ele também é um grande ~~megalomaníaco~~ visionário e está planejando fazer um grande evento: o **LAMA**, *Labenu Musical Awards*, um festival  com várias bandas famosas para a formatura da sua turma e, no final, vocês podem eleger a banda que mais gostaram! Entretanto, na opinião dele, vocês só serão merecedores se entregarem um sistema impecável que permita o gerenciamento completo desses shows.
 
-Para isso já deixamos algumas tabelas prontas para vocês não precisarem se preocupar com a modelagem do banco. Deixamos também um template do projeto já com a estrutura da parte de usuários. Vocês podem usá-las a vontade, mas, se quiser fazer do zero sem esse auxílio, também pode.
+## Sobre:
+Projeto desenvolvido conforme proposta do bootcamp ministrado pela Labenu para a criação do back-end de um sistema de cadastro e organização de bandas e shows. Esse projeto foi construído para a prática da implementação de testes unitários usando Jest.
+
+## Tecnologias:
+* Typescript
+* Node
+* MySQL
+* Knex
+* UUID
+* Json-Web-Token
+* Bcrypt.js
+* Express
+* Jest
+
+## Funcionalidades:
+* Cadastro de usuários
+* Login
+* Registrar bandas
+* Visualização de detalhes sobre a banda
+* Adiocionar shows
+* Visualização de todos os shows do mesmo dia
+
+## Backlog:
+* Endpoint de criar ingresso
+* Endpoint de comprar ingresso
+* Endpoint de adicionar foto
+* Endpoint de visualizar todas as fotos
+* Página do front end em React do endpoint acima
